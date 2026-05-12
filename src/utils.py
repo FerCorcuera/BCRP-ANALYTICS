@@ -1,6 +1,8 @@
 import pandas as pd
 import requests
 
+# TODO: add the other parameters to get_brp_series function and edge cases (handling errors)
+
 
 def get_bcrp_series(series_code, start_period=None, end_period=None):
     """
@@ -58,3 +60,64 @@ def clean_bcrp_series(df: pd.DataFrame):
     df["period"] = df["period"].apply(parse_bcrp_period)
 
     return df
+
+
+def get_bcrp_clean_series(
+    series_code, name_serie: str, start_period=None, end_period=None
+):
+    """
+    Pipeline to get BCRP data cleaned in a pandas dataframe format,
+    paramteres:
+    - series_code: the oficial BCRP code for that serie
+    - name_serie: the name of the serie that you are retrieven (must be short and with one str)
+    - start_period (optional)
+    - end_period (optional)
+
+    if periods are not provided the function will retrieve all the available data
+    """
+
+    df_bcrp_series = get_bcrp_series(series_code, start_period, end_period)
+
+    clean_df_bcrp_series = clean_bcrp_series(df_bcrp_series).sort_values(
+        "period", ascending=False
+    )
+
+    clean_df_bcrp_series[name_serie] = clean_df_bcrp_series["value"]
+
+    clean_df_bcrp_series = clean_df_bcrp_series.drop(columns=["value"])
+
+    return clean_df_bcrp_series
+
+
+# TODO: Improve the functionto consider other parametrs like periods
+def build_bcrp_dataset(names_codes: dict) -> pd.DataFrame:
+    """
+    Function to create a whole dataset (in pd.dataframe format) given a dictionary with the codes and names
+    Parameters:
+
+    - names_codes: a dictionary with the codes and their respective names that will be used as headers
+
+        names_codes = {1235BFD:'test_serie'}
+
+    """
+    df_bcrp_dataset = None
+
+    for code, name in names_codes.items():
+
+        if df_bcrp_dataset is None:
+
+            df_bcrp_dataset = get_bcrp_clean_series(code, name)
+
+        else:
+
+            df_bcrp_new_serie = get_bcrp_clean_series(code, name)
+
+            df_bcrp_dataset = pd.merge(
+                df_bcrp_dataset, df_bcrp_new_serie, on="period", how="outer"
+            )
+
+    df_bcrp_dataset = df_bcrp_dataset.sort_values(
+        "period", ascending=False
+    ).reset_index(drop=True)
+
+    return df_bcrp_dataset
