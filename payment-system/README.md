@@ -17,6 +17,7 @@ In this project we are investigating and applying different ML techniques to the
 # Current Findings
 
 1. Similar card payment series appear across multiple BCRP statistical groups because they represent different analytical perspectives of the payment system through history
-2. Some older groups such as "High and Low Value Payments" likely correspond to previous methodologies used by the BCRP to structure the retail payment market.
-3. An attempt was made to replicate the BCRP chart on low-value retail payment instruments
-4. The main unresolved problem is identifying how the filtered "otros canales de tranfeencias interbancarias"
+2. We can find differences in the same series but in different groups, like in the amounts of "Monto de bajo valor" (PN39936SM vs PN42160EM) 
+3. That could be because some older groups such as "Pagos de alto y bajo valor" likely correspond to previous methodologies used by the BCRP to structure the retail payment market.
+4. An attempt was made to replicate the BCRP chart on low-value retail payment instruments
+5. The main unresolved problem is identifying how the filtered "otros canales de tranfeencias interbancarias"
