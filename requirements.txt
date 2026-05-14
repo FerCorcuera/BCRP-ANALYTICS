@@ -4,4 +4,6 @@ scikit-learn
 matplotlib
 ipykernel
 xgboost
-request
+requests
+catppuccin
+jupyter

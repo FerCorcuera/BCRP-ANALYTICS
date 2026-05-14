@@ -1,6 +1,10 @@
 # BCRP ANALYTICS
 
-This repo contains different analytics projects using BCRP data, analyzing macroeconomic and payment system indicators, and experimenting with machine learning techniques.
+This repository contains analytics and research projects built using BCRP public data, focused on:
+- payment systems,
+- inflation and macroeconomic indicators,
+- financial system analysis,
+- and reusable Python utilities for retrieving and processing BCRP datasets.
 
 ---
 
@@ -18,11 +22,12 @@ BCRP-ANALYTICS/
 │   ├── reports/
 │   └── data/
 │
-├── src/
+├── bcrp_analytics/
 │   ├── __init__.py
 │   └── utils.py
 │
 ├── requirements.txt
+├── setup.py
 ├── .gitignore
 └── README.md
 ```
@@ -34,9 +39,25 @@ BCRP-ANALYTICS/
 | Folder | Description |
 |---|---|
 | `metadata/` | BCRP metadata catalog used to search and organize series codes |
-| `payment-system/` | Payment system analysis projects and notebooks |
-| `src/` | Reusable Python utilities and helper functions |
-| `reports/` | Generated reports and outputs |
-| `data/` | Local temporary datasets (not uploaded to GitHub) |
+| `payment-system/` | Payment system analysis notebooks and market research |
+| `bcrp_analytics/` | Reusable Python utilities for retrieving and processing BCRP data |
+| `reports/` | Generated reports and visualizations |
+| `data/` | Local temporary datasets (excluded from GitHub) |
 
 ---
+
+# Current Features
+
+- Download and clean BCRP time series data
+- Build custom datasets from multiple BCRP series
+- Payment-system market analysis
+- MCC-based merchant segment analysis
+- Exploratory analysis of wallets, immediate payments and acquiring markets
+
+---
+
+# TODO
+
+1. Add documentation and examples for `bcrp_analytics` utilities and tests
+2. Create specialized modules for inflation, exchange rates and payment systems
+3. Add caching and validation logic to avoid unnecessary API requests
