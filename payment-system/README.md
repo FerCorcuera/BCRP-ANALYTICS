@@ -16,28 +16,28 @@ In this project we are investigating and applying different ML techniques to the
 
 # Current Findings
 
-1. Similar card payment series appear across multiple BCRP statistical groups because they represent different analytical perspectives of the payment system through history.
+1. Similar payment series appear across multiple BCRP statistical groups because they represent different historical and methodological perspectives of the Peruvian payment system. This includes differences in series such as low-value payments (`PN39936SM` vs `PN42160EM`), likely due to methodological changes over time.
 
-2. We can find differences in the same series but in different groups, like in the amounts of "Monto de bajo valor" (PN39936SM vs PN42160EM).
+2. An attempt was made to replicate the BCRP chart on low-value retail payment instruments published in Revista Moneda N.° 201. The main unresolved issue is identifying how the BCRP filtered the category `"otros canales de transferencias intrabancarias"` to exclude canales-mayoristas operations.
 
-3. That could be because some older groups such as "Pagos de alto y bajo valor" likely correspond to previous methodologies used by the BCRP to structure the retail payment market.
+3. The merchant acquiring and payment facilitator datasets appear to be constructed using MCC-based merchant segment aggregations defined by the BCRP. Segments such as pharmacies, gas stations, restaurants, supermarkets, transport and microbusinesses match directly with the official MCC classifications.
 
-4. An attempt was made to replicate the BCRP chart on low-value retail payment instruments.
+4. According to the BCRP methodology documentation, transactions related to financial institutions, government and public services are explicitly excluded from the published merchant aggregates. Remaining merchant categories not explicitly excluded are likely grouped inside `"otros segmentos"`. (see source 9)
 
-5. The main unresolved problem is identifying how the filtered "otros canales de transferencias intrabancarias" were constructed in the BCRP publication.
+5. The total card payment market is significantly larger than the published acquiring and payment facilitator market. This suggests that the acquiring/facilitator datasets do not represent the full card-processing ecosystem, but rather a specific subset of merchant acquiring activity reported under the BCRP framework.
 
-6. The merchant acquiring and payment facilitator datasets appear to be constructed using MCC-based segment aggregations defined by the BCRP.
-
-7. Segments such as pharmacies, gas stations, restaurants, supermarkets, transport and microbusinesses match directly with the MCC segment definitions published by the BCRP.
-
-8. According to the BCRP methodology documentation, the segments related to financial institutions, government and public services are explicitly excluded from the published aggregates.
-
-9. All remaining MCC categories that are not explicitly excluded are likely grouped inside "otros segmentos".
+6. The share of foreign-currency transactions inside the acquiring and facilitator ecosystem is relatively small compared to the broader low-value payment market. Therefore, using total transaction values (`MN + ME`) appears methodologically consistent for aggregate market analysis, while currency decomposition can still be performed separately when needed. 
 
 ---
-# Current questions:
+---
+# Current Questions
 
-1. What are the channels that QR payments made through adquirentes y facilitadores use?
+1. Why is the total card payment market significantly larger than the published acquiring and payment facilitator market, despite card payments generally requiring merchant acquiring infrastructure?
+
+2. How much of the immediate payment and wallet ecosystem corresponds to actual merchant commerce (P2B) versus person-to-person transfers (P2P)?
+
+3. What exact methodology did the BCRP use to filter wholesale-related operations from `"otros canales de transferencias intrabancarias"` in the retail payment market publication?
+
 ---
 # References and Documentation
 
