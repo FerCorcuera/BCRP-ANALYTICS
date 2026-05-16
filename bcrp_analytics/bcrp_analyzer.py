@@ -4,28 +4,110 @@ import requests
 from bcrp_analytics import build_bcrp_dataset
 
 
+# TODO: cambiar las funcioens para que devuelvan datafames y no seires, complican mucho las funciones
 class BCRP_ANALYZER:
+    """
+    BCRP_ANALYZER is a tool that:
+        - Automates data straction from the BCRP's API
+        - Returns plots to analyze how different markets and macroeconomic trends are going
+        - Applies useful macroeconomic methods (deflation , exchange rate, etc)
+    """
 
-    inflation_bcrp_series = {"PN38705PM": "ipc", "PN42107PM": "ipc_desestacionalizado"}
+    inflation_bcrp_series = {
+        "PN38705PM": "ipc",
+        "PN42107PM": "ipc_desestacionalizado",
+        "PN01271PM": "inflacion_mensual",
+        "PN01272PM": "inflacion_acumulada",
+        "PN01273PM": "inflacion_12m",
+    }
+
+    df_ipc_series = None
 
     def __init__(self):
 
-        self.df_ipc_series = None
+        if BCRP_ANALYZER.df_ipc_series is None:
 
-        print("starting inflation analyzer")
+            print("Loading BCRP data...")
 
-    def deflate_series(monthly_series: pd.Series):
+            BCRP_ANALYZER.df_ipc_series = build_bcrp_dataset(
+                BCRP_ANALYZER.inflation_bcrp_series
+            )
 
-        if self.df_ipc_series is None:
+            print("BCRP data loaded!")
 
-            self.df_ipc_series = _load_ipc_series()
+        self.df_ipc_series = BCRP_ANALYZER.df_ipc_series.sort_values("period")
+
+    def deflate_series(self, monthly_series: pd.Series) -> pd.Series:
+        """
+        Deflates a nominal series using the IPC series extracted from BCRP data
+        It automatically fetchs data using the API.
+
+        Parameters
+        ----------
+        montly_series: pd.Series of the nominal values to deflate
+
+        """
 
         monthly_deflated_series = (monthly_series / self.df_ipc_series["ipc"]) * 100
 
-        return monthly_series
+        return monthly_deflated_series
 
-    def _load_ipc_series(self):
+    def calculate_real_monthly_growth(
+        self, monthly_df: pd.DataFrame, period_name: str, series_name: str
+    ) -> pd.Series:
+        """
+        Returns the real monthly growth given a monthly series
+        using BCRP inflation series (Fisher equation)
 
-        df_ipc_series = build_bcrp_dataset(inflation_bcrp_series)
+        Parameters
+        ----------
+        monthly_df  : pd.DataFrame with the nominal series
+        period_name : column name of the period (must match BCRP period format)
+        series_name : column name of the nominal values to deflate
 
-        return df_ipc_series
+        """
+        monthly_df = monthly_df.sort_values(period_name).reset_index(drop=True)
+
+        monthly_df["nominal_growth"] = monthly_df[series_name].pct_change() * 100
+
+        merged_df = monthly_df.merge(
+            self.df_ipc_series[["period", "inflacion_mensual"]],
+            left_on=period_name,
+            right_on="period",
+            how="left",
+        )
+
+        real_growth = (
+            (1 + merged_df["nominal_growth"] / 100)
+            / (1 + merged_df["inflacion_mensual"] / 100)
+        ) - 1
+
+        return real_growth * 100
+
+    def calculate_real_12m_growth(
+        self, monthly_df: pd.DataFrame, period_name: str, series_name: str
+    ) -> pd.Series:
+        """
+        Returns the real monthly growth given a monthly serie using BCRP inflation series
+        Parameters
+        ----------
+        monthly_df: pd.DataFrame to calcualte the real yoy growth
+
+        """
+        monthly_df = monthly_df.sort_values(period_name).reset_index(drop=True)
+
+        monthly_df["nominal_growth"] = monthly_df[series_name].pct_change(12) * 100
+
+        merged_df = monthly_df.merge(
+            self.df_ipc_series[["period", "inflacion_12m"]],
+            left_on=period_name,
+            right_on="period",
+            how="left",
+        )
+
+        real_growth = (
+            (1 + merged_df["nominal_growth"] / 100)
+            / (1 + merged_df["inflacion_12m"] / 100)
+        ) - 1
+
+        return real_growth * 100
