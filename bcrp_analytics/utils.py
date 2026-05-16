@@ -1,3 +1,5 @@
+import warnings
+
 import pandas as pd
 import requests
 
@@ -111,11 +113,16 @@ def get_bcrp_clean_series(
 def build_bcrp_dataset(names_codes: dict) -> pd.DataFrame:
     """
     Function to create a whole dataset (in pd.dataframe format) given a dictionary with the codes and names
+    ---------
     Parameters:
 
     - names_codes: a dictionary with the codes and their respective names that will be used as headers
 
         names_codes = {1235BFD:'test_serie'}
+
+    -------
+    Notes:
+    Series with different data ranges are merged using an outer join. Missing observations are representend as NaN values
 
     """
     if not isinstance(names_codes, dict):
@@ -145,5 +152,11 @@ def build_bcrp_dataset(names_codes: dict) -> pd.DataFrame:
     df_bcrp_dataset = df_bcrp_dataset.sort_values(
         "period", ascending=False
     ).reset_index(drop=True)
+
+    if df_bcrp_dataset.isna().values.any():
+
+        warnings.warn(
+            "Warning: Some series contain missing ovservations due to selecting series with different data ranges"
+        )
 
     return df_bcrp_dataset
