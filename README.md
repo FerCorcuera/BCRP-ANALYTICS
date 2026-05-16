@@ -24,7 +24,8 @@ BCRP-ANALYTICS/
 │
 ├── bcrp_analytics/
 │   ├── __init__.py
-│   └── utils.py
+│   ├── utils.py
+│   └── bcrp_analyzer.py
 │
 ├── requirements.txt
 ├── setup.py
@@ -34,25 +35,15 @@ BCRP-ANALYTICS/
 
 ---
 
-# Main Components
-
-| Folder | Description |
-|---|---|
-| `metadata/` | BCRP metadata catalog used to search and organize series codes |
-| `payment-system/` | Payment system analysis notebooks and market research |
-| `bcrp_analytics/` | Reusable Python utilities for retrieving and processing BCRP data |
-| `reports/` | Generated reports and visualizations |
-| `data/` | Local temporary datasets (excluded from GitHub) |
-
----
-
 # Current Features
 
 - Download and clean BCRP time series data
 - Build custom datasets from multiple BCRP series
+- Inflation and IPC analysis utilities
+- Deflation and real-growth utilities
 - Payment-system market analysis
-- MCC-based merchant segment analysis
 - Exploratory analysis of wallets, immediate payments and acquiring markets
+- Shared caching system for reusable macroeconomic datasets
 
 ---
 
@@ -60,4 +51,6 @@ BCRP-ANALYTICS/
 
 1. Add documentation and examples for `bcrp_analytics` utilities and tests
 2. Create specialized modules for inflation, exchange rates and payment systems
-3. Add caching and validation logic to avoid unnecessary API requests
+3. Improve dataframe validation and merge safety for time-series operations
+4. Add visualization utilities for macroeconomic analysis
+5. Add forecasting and deseasonalization experiments
