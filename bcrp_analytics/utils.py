@@ -4,9 +4,16 @@ import requests
 # TODO: add the other parameters to get_brp_series function and edge cases (handling errors)
 
 
-def get_bcrp_series(series_code: str, start_period=None, end_period=None):
+def get_bcrp_series(series_code: str, start_period=None, end_period=None) -> pd.Series:
     """
-    Returns BCRP series data as a pandas DataFrame, it can accept optional start and end period params
+    Returns BCRP series data as a pandas DataFrame.
+    Parameters
+    ------------
+    - series_code: Str, The oficial BCRP series code, example: PN42683EM
+    - start_period: Str, The selected start period fo the serie, exmample: 2013-1
+    - end_period: Str, the selectes end period to the serie
+
+    Returns: a pandas.Series with the period and the selected serie with the column name "value"
     """
 
     if not isinstance(series_code, str):
@@ -47,7 +54,10 @@ MONTH_MAP = {
 
 
 def parse_bcrp_period(periodo: str):
-
+    """
+    Applies a transformation to the "period" original column from BCRP.
+    In order to have a pandas.date_time format (month,year)
+    """
     mes, anio = periodo.split(".")
 
     mes_en = MONTH_MAP[mes]
@@ -56,7 +66,11 @@ def parse_bcrp_period(periodo: str):
 
 
 def clean_bcrp_series(df: pd.DataFrame):
-
+    """
+    Cleans the imported BCRP series:
+    1. Applies the pandas date format for the period column
+    2. Converts the "value" column of the serie into float
+    """
     df = df.copy()
     df.columns = ["period", "value"]
     df["value"] = df["value"].str[0].astype(float)
