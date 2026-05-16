@@ -15,7 +15,6 @@ Example:
 
 This means that prices increased approximately 20% since Dec.2021.
 
-
 ---
 
 ## Deflation of a Series
@@ -27,14 +26,11 @@ Example:
 ```python
 real_value = (nominal_value / ipc) * 100
 ```
-
 If:
 - IPC Dec.2021 = 100
 - IPC Apr.2026 = 120
 
-then prices are approximately 20% higher relative to Dec.2021.
-
-Therefore, deflating a nominal series answers the question:
+then prices are approximately 20% higher relative to Dec.2021. Therefore, deflating a nominal series answers the question:
 
 ```text
 "What would this value look like if prices had remained at Dec.2021 levels?"
@@ -68,8 +64,6 @@ The base year was updated by the INEI in order to reflect:
 - new products and digital services,
 - updated consumer basket weights.
 
-Even after the base-year change, inflation rates remain comparable because inflation is calculated using percentage changes instead of absolute index levels.
-
 Source: [Inei presenta nueva base para la medicion de precios](https://www.gob.pe/institucion/inei/noticias/584878-inei-presenta-nuevo-ano-base-para-la-medicion-de-los-precios-al-consumidor)
 ---
 
@@ -82,7 +76,11 @@ Source: [Inei presenta nueva base para la medicion de precios](https://www.gob.p
 
 # Findings
 
-TODO
+- Monthly inflation in Peru remained relatively low and stable during the analyzed period. We can see it in the nominal and real monthly growth rates of the payment system (look very similar).
+
+- However, when we compare YoY nominal vs real growth, the inflation effect becomes more visible. Inflation accumulates through time, creating a larger gap between real and nominal series.
+
+- The payment system continues to show strong real growth even after adjusting for inflation, suggesting that the market expansion in'tt explained only by higher prices, but also by genuine increases in economic activity and payment usage
 
 ---
 
@@ -90,19 +88,10 @@ TODO
 
 ## Inflation Analysis
 
-- Replicate official BCRP inflation series
-- Compare monthly vs interannual inflation
 - Analyze core inflation vs headline inflation
 - Analyze food vs non-food inflation
 - Analyze tradable vs non-tradable inflation
 - Try to simulate how the BCRP deseasonalizes CPI series
-
-## Payment System Analysis
-
-- Analyze inflation-adjusted payment system growth
-- Compare nominal vs real payment growth
-- Calculate YoY growth of payment activity
-- Compare market share using real vs nominal values
 
 ## Forecasting
 
