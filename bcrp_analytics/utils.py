@@ -4,10 +4,14 @@ import requests
 # TODO: add the other parameters to get_brp_series function and edge cases (handling errors)
 
 
-def get_bcrp_series(series_code, start_period=None, end_period=None):
+def get_bcrp_series(series_code: str, start_period=None, end_period=None):
     """
     Returns BCRP series data as a pandas DataFrame, it can accept optional start and end period params
     """
+
+    if not isinstance(series_code, str):
+        raise TypeError(f"The series code {series_code} must be a string")
+
     base_url = "https://estadisticas.bcrp.gob.pe/" "estadisticas/series/api"
     url = f"{base_url}/{series_code}/json"
 
@@ -100,6 +104,14 @@ def build_bcrp_dataset(names_codes: dict) -> pd.DataFrame:
         names_codes = {1235BFD:'test_serie'}
 
     """
+    if not isinstance(names_codes, dict):
+
+        raise TypeError("The 'names_codes' parameters must be a dictionary")
+
+    if not names_codes:
+
+        raise ValueError("The dictionary 'names_codes' can not be empty")
+
     df_bcrp_dataset = None
 
     for code, name in names_codes.items():
