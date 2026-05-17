@@ -1,10 +1,11 @@
 # BCRP ANALYTICS
 
 This repository contains analytics and research projects built using BCRP public data, focused on:
-- payment systems,
-- inflation and macroeconomic indicators,
-- financial system analysis,
-- and reusable Python utilities for retrieving and processing BCRP datasets.
+
+- payment systems
+- inflation and macroeconomic indicators
+- financial system analysis
+- reusable Python utilities for retrieving and processing BCRP datasets
 
 ---
 
@@ -27,10 +28,33 @@ BCRP-ANALYTICS/
 │   ├── utils.py
 │   └── bcrp_analyzer.py
 │
-├── requirements.txt
-├── setup.py
+├── pyproject.toml
+├── poetry.lock
 ├── .gitignore
 └── README.md
+```
+
+---
+
+# Installation
+
+This project uses Poetry for dependency management and packaging.
+
+
+## Install dependencies
+
+```bash
+poetry install
+```
+---
+
+# Example Usage
+
+```python
+from bcrp_analytics.utils import (
+    build_bcrp_dataset,
+    get_bcrp_clean_series,
+)
 ```
 
 ---
