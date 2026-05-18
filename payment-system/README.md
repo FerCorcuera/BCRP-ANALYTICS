@@ -28,6 +28,8 @@ In this project we are investigating and applying different ML techniques to the
 
 6. The share of foreign-currency transactions inside the acquiring and facilitator ecosystem is relatively small compared to the broader low-value payment market. Therefore, using total transaction values (`MN + ME`) appears methodologically consistent for aggregate market analysis, while currency decomposition can still be performed separately when needed. 
 
+7. Exploratory time-series analysis suggests that the acq and fac market is non stationary and shows trend and seasonal behavior. SARIMA and Prophet baseline models were able to capture some of these dynamics but the limited sample size (27 observations) introduces significant challenges, resulting in unstable or statistically weak coefficient estimates.
+
 ---
 ---
 # Current Questions
