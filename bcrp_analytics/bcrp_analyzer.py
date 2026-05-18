@@ -37,24 +37,36 @@ class BCRP_ANALYZER:
 
         self.df_ipc_series = BCRP_ANALYZER.df_ipc_series.sort_values("period")
 
-    def deflate_series(self, monthly_series: pd.Series) -> pd.Series:
+    def deflate_series(
+        self, monthly_df: pd.DataFrame, period_name: str, series_name: str
+    ) -> pd.Dataframe:
         """
         Deflates a nominal series using the IPC series extracted from BCRP data
         It automatically fetchs data using the API.
 
         Parameters
         ----------
-        montly_series: pd.Series of the nominal values to deflate
+        montly_series: pd.DataFrame of the nominal values to deflate
 
         """
 
-        monthly_deflated_series = (monthly_series / self.df_ipc_series["ipc"]) * 100
+        merged_df = monthly_df.merge(
+            self.df_ipc_series[["period", "ipc"]],
+            left_on=period_name,
+            right_on="period",
+            how="left",
+        )
+
+        deflated_name = series_name + "_deflated"
+        merged_df[deflated_name] = (merged_df[series_name] / merged_df["ipc"]) * 100
+
+        display(merged_df[[period_name, series_name, "monthly_deflated_series"]])
 
         return monthly_deflated_series
 
-    def calculate_real_monthly_growth(
+    def calculate_realmonthly_growth(
         self, monthly_df: pd.DataFrame, period_name: str, series_name: str
-    ) -> pd.Series:
+    ) -> pd.DataFrame:
         """
         Returns the real monthly growth given a monthly series
         using BCRP inflation series (Fisher equation)
@@ -77,16 +89,21 @@ class BCRP_ANALYZER:
             how="left",
         )
 
-        real_growth = (
-            (1 + merged_df["nominal_growth"] / 100)
-            / (1 + merged_df["inflacion_mensual"] / 100)
-        ) - 1
+        merged_df["real_growth"] = (
+            (
+                (1 + merged_df["nominal_growth"] / 100)
+                / (1 + merged_df["inflacion_mensual"] / 100)
+            )
+            - 1
+        ) * 100
 
-        return real_growth * 100
+        display(merged_df[["period", "nominal_growth", "real_growth"]])
+
+        return merged_df
 
     def calculate_real_12m_growth(
         self, monthly_df: pd.DataFrame, period_name: str, series_name: str
-    ) -> pd.Series:
+    ) -> pd.DataFrame:
         """
         Returns the real monthly growth given a monthly serie using BCRP inflation series
         Parameters
@@ -105,9 +122,12 @@ class BCRP_ANALYZER:
             how="left",
         )
 
-        real_growth = (
-            (1 + merged_df["nominal_growth"] / 100)
-            / (1 + merged_df["inflacion_12m"] / 100)
-        ) - 1
+        merged_df[real_growth] = (
+            (
+                (1 + merged_df["nominal_growth"] / 100)
+                / (1 + merged_df["inflacion_12m"] / 100)
+            )
+            - 1
+        ) * 100
 
-        return real_growth * 100
+        return merged_df
