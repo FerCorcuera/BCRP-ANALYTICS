@@ -39,7 +39,7 @@ class BCRP_ANALYZER:
 
     def deflate_series(
         self, monthly_df: pd.DataFrame, period_name: str, series_name: str
-    ) -> pd.Dataframe:
+    ) -> pd.DataFrame:
         """
         Deflates a nominal series using the IPC series extracted from BCRP data
         It automatically fetchs data using the API.
