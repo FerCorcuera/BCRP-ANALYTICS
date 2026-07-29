@@ -1,0 +1,131 @@
+:root {
+  --background: #f4f6f8;
+  --surface: #ffffff;
+  --text: #14212b;
+  --muted: #5c6973;
+  --accent: #8b1e2d;
+  --border: #dde3e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    linear-gradient(rgba(20, 33, 43, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 33, 43, 0.035) 1px, transparent 1px),
+    var(--background);
+  background-size: 32px 32px;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+main {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: 32px 20px;
+}
+
+.hero {
+  width: min(720px, 100%);
+  padding: clamp(36px, 7vw, 72px);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+  border-radius: 4px;
+  background: var(--surface);
+  box-shadow: 0 24px 60px rgba(28, 39, 48, 0.08);
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 620px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.lead {
+  max-width: 590px;
+  margin: 32px 0 0;
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  line-height: 1.5;
+}
+
+.description {
+  max-width: 590px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 38px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(139, 30, 45, 0.1);
+}
+
+@media (max-width: 520px) {
+  main {
+    padding: 16px;
+  }
+
+  .hero {
+    padding: 36px 28px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero {
+    animation: reveal 500ms ease-out both;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
