@@ -6,6 +6,8 @@ This repository contains analytics and research projects built using BCRP public
 - inflation and macroeconomic indicators
 - financial system analysis
 - reusable Python utilities for retrieving and processing BCRP datasets
+- a public web interface for documenting nowcasting experiments and, as the
+  research evolves, comparing predictions with realized values
 
 ---
 
@@ -14,25 +16,36 @@ This repository contains analytics and research projects built using BCRP public
 ```text
 BCRP-ANALYTICS/
 │
-├── metadata/
-│   └── BCRPData-metadata.csv
-│
-├── payment-system/
-│   ├── README.md
-│   ├── notebooks/
-│   ├── reports/
-│   └── data/
-│
 ├── bcrp_analytics/
 │   ├── __init__.py
 │   ├── utils.py
 │   └── bcrp_analyzer.py
+│
+├── data/
+│   └── BCRPData-metadata.csv
+│
+├── inflation/
+│   ├── README.md
+│   └── *.ipynb
+│
+├── payment-system/
+│   ├── README.md
+│   ├── data/
+│   └── notebooks/
+│
+├── web/
+│   ├── app/
+│   └── package.json
 │
 ├── pyproject.toml
 ├── poetry.lock
 ├── .gitignore
 └── README.md
 ```
+
+The `web/` directory contains the initial Next.js foundation for the BCRP
+Nowcasting Lab. It is intentionally minimal for now and will grow alongside the
+research and forecasting work.
 
 ---
 
