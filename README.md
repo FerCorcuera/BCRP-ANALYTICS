@@ -1,6 +1,8 @@
 # BCRP ANALYTICS
 
-This repository contains analytics and research projects built using BCRP public data, focused on:
+This repository contains analysis and research projects developed using public data from the BCRP, focusing on the creation of *nowcasting* models for these series and their publication on the website, as well as on learning about and comparing new foundational models against statistical or econometric applications.
+
+Covered topics and features:
 
 - payment systems
 - inflation and macroeconomic indicators
@@ -45,7 +47,9 @@ BCRP-ANALYTICS/
 
 The `web/` directory contains the initial Next.js foundation for the BCRP
 Nowcasting Lab. It is intentionally minimal for now and will grow alongside the
-research and forecasting work.
+research and forecasting work. 
+
+> Check upcoming updates in: [BCRP-Nowcasting-Lab](https://bcrp-analytics.vercel.app)
 
 ---
 
@@ -89,5 +93,4 @@ from bcrp_analytics.utils import (
 1. Add documentation and examples for `bcrp_analytics` utilities and tests
 2. Create specialized modules for inflation, exchange rates and payment systems
 3. Improve dataframe validation and merge safety for time-series operations
-4. Add visualization utilities for macroeconomic analysis
-5. Add forecasting and deseasonalization experiments
+4. Add nowcasting and deseasonalization experiments
