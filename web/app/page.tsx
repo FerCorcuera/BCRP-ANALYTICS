@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="pageShell">
@@ -40,7 +42,11 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className="signalCard" aria-label="Research note">
+        <Link
+          className="signalCard"
+          href="/signals/pn42689em"
+          aria-label="Open Signal 001: PN42689EM"
+        >
           <p className="signalNumber">01</p>
           <div>
             <p className="signalLabel">Current transmission</p>
@@ -48,7 +54,7 @@ export default function Home() {
               Tracking signals between data releases.
             </p>
           </div>
-        </aside>
+        </Link>
       </section>
 
       <footer>
