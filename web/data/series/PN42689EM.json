@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "series": {
+    "code": "PN42689EM",
+    "signal_id": "signal-001",
+    "display_name": "Monto total del mercado de adquirencia",
+    "official_name": "Monto y número de operaciones procesadas por los adquirentes y facilitadores de pago por segmento de comercio (millones de soles y miles de operaciones) - Monto - Total",
+    "description": "Monto total de operaciones procesadas por los adquirentes y facilitadores de pago.",
+    "frequency": "monthly",
+    "frequency_label": "Mensual",
+    "unit": "millions_of_soles",
+    "unit_label": "Millones de soles",
+    "source": "BCRPData",
+    "source_url": "https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN42689EM/html"
+  },
+  "retrieved_at": "2026-07-31T05:29:23Z",
+  "first_period": "2024-01",
+  "latest_period": "2026-05",
+  "observation_count": 29,
+  "observations": [
+    {
+      "period": "2024-01",
+      "value": 8873.63475151693
+    },
+    {
+      "period": "2024-02",
+      "value": 8761.96360759131
+    },
+    {
+      "period": "2024-03",
+      "value": 9474.8059040703
+    },
+    {
+      "period": "2024-04",
+      "value": 8886.67406697695
+    },
+    {
+      "period": "2024-05",
+      "value": 9715.31556382011
+    },
+    {
+      "period": "2024-06",
+      "value": 9617.58521450701
+    },
+    {
+      "period": "2024-07",
+      "value": 11129.5297694559
+    },
+    {
+      "period": "2024-08",
+      "value": 10634.393171012
+    },
+    {
+      "period": "2024-09",
+      "value": 9677.35533501946
+    },
+    {
+      "period": "2024-10",
+      "value": 9923.20518493174
+    },
+    {
+      "period": "2024-11",
+      "value": 10495.126425868
+    },
+    {
+      "period": "2024-12",
+      "value": 12913.1069838993
+    },
+    {
+      "period": "2025-01",
+      "value": 10346.7078537337
+    },
+    {
+      "period": "2025-02",
+      "value": 9861.68106734615
+    },
+    {
+      "period": "2025-03",
+      "value": 11113.2792630786
+    },
+    {
+      "period": "2025-04",
+      "value": 10273.9796735302
+    },
+    {
+      "period": "2025-05",
+      "value": 10999.239781862
+    },
+    {
+      "period": "2025-06",
+      "value": 10405.1324475472
+    },
+    {
+      "period": "2025-07",
+      "value": 11916.624702502
+    },
+    {
+      "period": "2025-08",
+      "value": 11160.9919800728
+    },
+    {
+      "period": "2025-09",
+      "value": 10587.3929032643
+    },
+    {
+      "period": "2025-10",
+      "value": 10944.9077731426
+    },
+    {
+      "period": "2025-11",
+      "value": 12200.2327106462
+    },
+    {
+      "period": "2025-12",
+      "value": 14927.0506617874
+    },
+    {
+      "period": "2026-01",
+      "value": 12252.0121637781
+    },
+    {
+      "period": "2026-02",
+      "value": 11697.0800007674
+    },
+    {
+      "period": "2026-03",
+      "value": 13167.9615052003
+    },
+    {
+      "period": "2026-04",
+      "value": 12574.8178129177
+    },
+    {
+      "period": "2026-05",
+      "value": 13135.3034047415
+    }
+  ]
+}
