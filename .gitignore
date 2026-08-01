@@ -1,4 +1,4 @@
-G Python Cache
+# G Python Cache
 
 __pycache__/
 *.pyc
@@ -37,3 +37,20 @@ Thumbs.db
 .vscode/
 
 *.egg-info/
+
+# Next.js dependencies and build output
+/web/node_modules/
+/web/.next/
+/web/out/
+/web/.vercel/
+
+# Web environment variables
+/web/.env*
+!/web/.env.example
+
+# TypeScript
+*.tsbuildinfo
+
+# JavaScript logs
+npm-debug.log*
+pnpm-debug.log*
